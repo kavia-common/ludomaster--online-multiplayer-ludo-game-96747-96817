@@ -1,0 +1,15 @@
+This directory name used parentheses which can cause issues in container/build environments.
+
+The database assets have been moved to:
+../Database_MongoDB/
+
+Please update any scripts or references from:
+  Database(MongoDB)/
+to:
+  Database_MongoDB/
+
+Key commands:
+  node Database_MongoDB/scripts/initSchema.js
+
+Key imports for backend (if using direct model access from this workspace):
+  const { getDb } = require('../Database_MongoDB/src/db/connection');

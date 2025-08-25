@@ -305,5 +305,3 @@ Maintenance
 --------------------------------------------------------------------------------
 Changelog
 v1.0.0: Initial schema and setup scripts.
-
-Note: This file remains in the legacy directory only as a compatibility pointer; please use Database_MongoDB/ going forward.
