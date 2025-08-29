@@ -1,4 +1,28 @@
-# LudoMaster MongoDB Schema and Setup
+# LudoMaster MongoDB Schema and Setup (Legacy directory notice)
+
+Important: This directory name contains parentheses and can cause failures in bash/Docker (e.g., syntax error near unexpected token '('). Use the mirrored directory without parentheses instead:
+Database_MongoDB/
+
+All content and scripts are maintained in:
+../Database_MongoDB/
+
+How to proceed:
+- Update all Dockerfiles, docker-compose, CI, and shell commands to reference Database_MongoDB/ instead of Database(MongoDB)/.
+- For schema initialization:
+  node Database_MongoDB/scripts/initSchema.js
+- For Mongoose indexes:
+  node Database_MongoDB/scripts/initMongoose.js
+- Backend imports:
+  const { getDb } = require('../Database_MongoDB/src/db/connection');
+
+If you cannot change a script immediately and must reference this legacy path in bash, escape or quote the directory:
+- Escaped: Database\(MongoDB\)
+- Quoted: "Database(MongoDB)"
+
+Below is the original schema documentation for convenience. For the authoritative, up-to-date version, see Database_MongoDB/README.md.
+
+--------------------------------------------------------------------------------
+[Original documentation retained for reference]
 
 This document describes the MongoDB schema for LudoMaster, including collections, field structures, required indexes, and initialization steps. It also explains how the backend should connect to this database.
 
@@ -128,9 +152,9 @@ Fields:
     t: ISODate,          // timestamp
     by: ObjectId,        // userId who performed the action
     dice: number|null,   // dice roll if applicable
-    tokenId: string|null,// which token was moved
-    from: string|null,   // board pos before
-    to: string|null,     // board pos after
+    tokenId: string,null,// which token was moved
+    from: string,null,   // board pos before
+    to: string,null,     // board pos after
     type: string         // "roll"|"move"|"capture"|"enter"|"finish"|"system"
   }
 - integrity: object {
