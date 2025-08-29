@@ -1,0 +1,24 @@
+This directory name uses parentheses which can cause issues in container/build environments (bash/Docker error: syntax error near unexpected token '(').
+
+All database assets were moved to:
+../Database_MongoDB/
+
+Action to take:
+- Update all Dockerfiles, docker-compose, CI scripts, and shell commands to reference:
+  Database_MongoDB/
+  instead of:
+  Database(MongoDB)/
+
+Key commands:
+  node Database_MongoDB/scripts/initSchema.js
+  node Database_MongoDB/scripts/initMongoose.js
+
+Backend imports:
+  const { getDb } = require('../Database_MongoDB/src/db/connection');
+
+Note:
+If you absolutely must reference this path in bash, you would need to escape it:
+  Database\(MongoDB\)
+or quote it:
+  "Database(MongoDB)"
+However, the recommended fix is to always use Database_MongoDB/ to avoid shell parsing errors.
